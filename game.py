@@ -1,8 +1,17 @@
+from os import system, name
 import random
 computerScore = 0
 userScore = 0
 gameOver = False
 options = ['Rock', 'Python', 'Scissors']
+
+
+def clear():
+    if name == 'nt':
+        _ = system('cls')
+
+    else:
+        _ = system('clear')
 
 
 def userWinsRound():
@@ -52,6 +61,9 @@ def endOfRound():
             gameOver = True
 
 
+
+# Game starts
+clear()
 userName = input('Enter your name please: ')
 print()
 
