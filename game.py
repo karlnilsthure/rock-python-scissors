@@ -5,17 +5,17 @@ gameOver = False
 options = ['Rock', 'Python', 'Scissors']
 
 
-def userWins():
+def userWinsRound():
     global userScore
     print(f'Computer choose "{computerInput}"')
-    print(f'1 point to you')
+    print('1 point to you')
     userScore += 1
 
 
-def computerWins():
+def computerWinsRound():
     global computerScore
     print(f'Computer choose "{computerInput}"')
-    print(f'1 point to computer')
+    print('1 point to computer')
     computerScore += 1
 
 
@@ -28,28 +28,25 @@ def printScore():
     print()
 
 
-def endOfRound():
-    global gameOver
+def resetScore():
     global userScore
     global computerScore
-    if userScore == 3:
-        playAgain = input('You won! Would you like to play again? (y/n) ')
+    userScore = 0
+    computerScore = 0
+
+
+def endOfRound():
+    global gameOver
+
+    if userScore == 3 or computerScore == 3:
+        wonOrLostStr = 'won' if (userScore == 3) else 'lost'
+
+        playAgain = input(
+            f'You {wonOrLostStr}! Would you like to play again? (y/n) ')
 
         if playAgain == 'y':
             gameOver = False
-            userScore = 0
-            computerScore = 0
-            printScore()
-        else:
-            gameOver = True
-
-    if computerScore == 3:
-        playAgain = input('You lost! Would you like to play again? (y/n) ')
-
-        if playAgain == 'y':
-            gameOver = False
-            userScore = 0
-            computerScore = 0
+            resetScore()
             printScore()
         else:
             gameOver = True
@@ -69,21 +66,21 @@ while not gameOver:
         print('Draw')
     elif userInput == 'Rock':
         if computerInput == 'Scissors':
-            userWins()
+            userWinsRound()
         else:
-            computerWins()
+            computerWinsRound()
 
     elif userInput == 'Python':
         if computerInput == 'Rock':
-            userWins()
+            userWinsRound()
         else:
-            computerWins()
+            computerWinsRound()
 
     elif userInput == 'Scissors':
         if computerInput == 'Python':
-            userWins()
+            userWinsRound()
         else:
-            computerWins()
+            computerWinsRound()
     else:
         print('Invalid input')
 
