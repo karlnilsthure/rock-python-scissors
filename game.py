@@ -28,7 +28,34 @@ def printScore():
     print()
 
 
-userName = input('Type your name: ')
+def endOfRound():
+    global gameOver
+    global userScore
+    global computerScore
+    if userScore == 3:
+        playAgain = input('You won! Would you like to play again? (y/n) ')
+
+        if playAgain == 'y':
+            gameOver = False
+            userScore = 0
+            computerScore = 0
+            printScore()
+        else:
+            gameOver = True
+
+    if computerScore == 3:
+        playAgain = input('You lost! Would you like to play again? (y/n) ')
+
+        if playAgain == 'y':
+            gameOver = False
+            userScore = 0
+            computerScore = 0
+            printScore()
+        else:
+            gameOver = True
+
+
+userName = input('Enter your name please: ')
 print()
 
 while not gameOver:
@@ -62,10 +89,4 @@ while not gameOver:
 
     printScore()
 
-    if userScore == 3:
-        gameOver = True
-        print('You win')
-
-    if computerScore == 3:
-        gameOver = True
-        print('You loose')
+    endOfRound()
